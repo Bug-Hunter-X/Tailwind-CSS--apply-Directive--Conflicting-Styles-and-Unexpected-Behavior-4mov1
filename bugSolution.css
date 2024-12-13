@@ -1,0 +1,18 @@
+To fix this, ensure that your overriding class is more specific. This can be done by:
+
+1. **Adding a more specific class name:** For example, you could rename the overriding class to something more specific, such as `my-element-width-override`. This increases the specificity of the style and the override will work correctly.
+
+2. **Using the `!important` flag:** As a less clean option, you can add `!important` to the style you want to ensure overrides, but this is generally discouraged as it can lead to maintenance issues.  Avoid this if possible.
+
+```css
+/* styles.css */
+.custom-width { @apply w-64; }
+.custom-width-override { @apply w-32; }
+
+/* Use a more specific class here */
+.my-element { @apply custom-width my-element-width-override; }
+
+/*OR - Avoid using !important*/
+/*.my-element { @apply custom-width custom-width-override!important; }*/
+```
+By fixing the specificity and avoiding ambiguous class names, the expected style will be applied correctly.
