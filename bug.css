@@ -1,0 +1,11 @@
+This bug occurs when using Tailwind CSS's `@apply` directive with custom utility classes that have conflicting styles.  For example:
+
+```css
+/* styles.css */
+.custom-width { @apply w-64; }
+.custom-width-override { @apply w-32; }
+
+.my-element { @apply custom-width custom-width-override; }
+```
+
+The expected behavior is that `.my-element` should have a width of 32 units because the `custom-width-override` class is applied last. However, in some cases (depending on the order of classes and potentially other factors like CSS specificity), `w-64` might override `w-32`, resulting in the element being 64 units wide instead.
